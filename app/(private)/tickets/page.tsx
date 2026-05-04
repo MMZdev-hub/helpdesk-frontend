@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Ticket } from "@/types/ticket";
+import BadgeStatus from "@/components/BadgeStatus";
 
 export default function Tickets() {
 
@@ -20,7 +21,7 @@ const tickets: Ticket[] = [
             {tickets.map((ticket) => (
                 <div className="flex justify-between p-4 bg-slate-900 rounded-lg mb-2" key={ticket.id}>
                     <p className="text-slate-300">{ticket.titulo}</p>
-                    <p className="text-slate-400 text-sm">{ticket.status}</p>
+                    <BadgeStatus status={ticket.status}/>
                 </div>
             ))}
             {novo && (
