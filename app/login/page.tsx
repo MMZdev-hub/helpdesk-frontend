@@ -12,6 +12,7 @@ export default function Login() {
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         console.log(email, password);
+        localStorage.setItem("token", "simulado");
         router.push("/dashboard");
     }
 

@@ -2,14 +2,16 @@
 import { useState } from "react";
 import { Ticket } from "@/types/ticket";
 import BadgeStatus from "@/components/BadgeStatus";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Tickets() {
+    useAuth();
 
-const [novo, setNovo] = useState(false);
-const tickets: Ticket[] = [
-    { id: 1, titulo: "Sistema não carrega", status: "Aberto"},
-    { id: 2, titulo: "Erro no relatório", status: "Em andamento"},
-    { id: 3, titulo: "Solicitar acesso", status: "Fechado"},
+    const [novo, setNovo] = useState(false);
+    const tickets: Ticket[] = [
+        { id: 1, titulo: "Sistema não carrega", status: "Aberto"},
+        { id: 2, titulo: "Erro no relatório", status: "Em andamento"},
+        { id: 3, titulo: "Solicitar acesso", status: "Fechado"},
 ]
 
     return (

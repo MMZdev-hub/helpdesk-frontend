@@ -1,8 +1,11 @@
+"use client";
 import StartCard from "@/components/StartCard";
 import { Ticket } from "@/types/ticket";
 import BadgeStatus  from "@/components/BadgeStatus"
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Dashboard() {
+    useAuth ();
 
     const tickets: Ticket[] = [
         { id: 1, titulo: "Sistema não carrega", status: "Aberto" },
