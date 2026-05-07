@@ -8,12 +8,25 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const router = useRouter(); 
 
+   
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         console.log(email, password);
-        localStorage.setItem("token", "simulado");
-        router.push("/dashboard");
+        const resposta = await fetch("http://localhost:3001/auth/login", {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({ email, senha: password }),
+        });
+    
+        const dados = await resposta.json();
+    
+        if (resposta.ok) {
+            localStorage.setItem("token", dados.token);
+            router.push("/dashboard");
+        } else {
+            alert(dados.message);
+        }
     }
 
     return (
