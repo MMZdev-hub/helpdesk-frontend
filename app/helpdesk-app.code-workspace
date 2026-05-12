@@ -1,0 +1,6 @@
+{
+    "folders": [
+        { "name": "Frontend", "path": "./helpdesk-app" },
+        { "name": "Backend", "path": "./helpdesk-api" }
+    ]
+}
