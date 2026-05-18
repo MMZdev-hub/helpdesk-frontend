@@ -3,15 +3,29 @@ import StartCard from "@/components/StartCard";
 import { Ticket } from "@/types/ticket";
 import BadgeStatus  from "@/components/BadgeStatus"
 import { useAuth } from "@/hooks/useAuth";
+import { useState, useEffect } from "react";
 
 export default function Dashboard() {
     useAuth ();
 
-    const tickets: Ticket[] = [
-        { id: 1, titulo: "Sistema não carrega", status: "Aberto" },
-        { id: 2, titulo: "Erro no relatório", status: "Em andamento" },
-        { id: 3, titulo: "Solicitar acesso", status: "Fechado" },
-    ]
+    const [tickets, setTickets] = useState<Ticket[]>([]);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/tickets`, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => res.json())
+        .then((dados) => {
+            if (Array.isArray(dados)) {
+                setTickets(dados);
+            }
+        });
+    }, []);
+
+    const abertos = tickets.filter(t => t.status === "Aberto").length
+    const emAndamento = tickets.filter(t => t.status === "Em andamento").length
+    const fechados = tickets.filter(t => t.status === " Fechado").length
 
     return (
         <div className="p-8 bg-slate-950 min-h-screen text-white">
@@ -19,9 +33,9 @@ export default function Dashboard() {
 
             <div className="grid grid-cols-3 gap-4 mb-8">
 
-                <StartCard title="Abertos" valor={12} cor="blue" />
-                <StartCard title="Em andamento" valor={8} cor="yellow" />
-                <StartCard title="Concluídos" valor={47} cor="green" />
+                <StartCard title="Abertos" valor={abertos} cor="blue" />
+                <StartCard title="Em andamento" valor={emAndamento} cor="yellow" />
+                <StartCard title="Concluídos" valor={fechados} cor="green" />
 
             </div>
 

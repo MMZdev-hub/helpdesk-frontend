@@ -13,7 +13,7 @@ export default function Login() {
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         console.log(email, password);
-        const resposta = await fetch("http://localhost:3001/auth/login", {
+        const resposta = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ email, senha: password }),

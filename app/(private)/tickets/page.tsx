@@ -14,7 +14,7 @@ export default function Tickets() {
     useEffect(() => {
         const token = localStorage.getItem("token");
 
-        fetch("http://localhost:3001/tickets", {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/tickets`, {
             headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => res.json())
@@ -24,7 +24,7 @@ export default function Tickets() {
     async function handleCriarTicket() {
         const token = localStorage.getItem("token");
 
-        const resposta = await fetch("http://localhost:3001/tickets", {
+        const resposta = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tickets`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
