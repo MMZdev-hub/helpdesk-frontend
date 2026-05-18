@@ -33,7 +33,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-3 gap-4 mb-8">
                 <StartCard title="Abertos" valor={abertos} cor="green" />
                 <StartCard title="Em andamento" valor={emAndamento} cor="yellow" />
-                <StartCard title="Concluídos" valor={fechados} cor="gray" />
+                <StartCard title="Concluidos" valor={fechados} cor="gray" />
             </div>
             <h2 className="text-lg font-semibold mb-4">Chamados Recentes</h2>
             {tickets.map((ticket) => (
