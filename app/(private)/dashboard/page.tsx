@@ -3,7 +3,11 @@ import StartCard from "@/components/StartCard";
 import { Ticket } from "@/types/ticket";
 import BadgeStatus  from "@/components/BadgeStatus"
 import { useAuth } from "@/hooks/useAuth";
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
+=======
+import { useState, useEffect  } from "react";
+>>>>>>> c8a3bb376b5c0a3e2e834a2a6ffecf51fc0e0e24
 
 export default function Dashboard() {
     useAuth ();
@@ -12,6 +16,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+<<<<<<< HEAD
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/tickets`, {
             headers: { Authorization: `Bearer ${token}` },
         })
@@ -26,6 +31,22 @@ export default function Dashboard() {
     const abertos = tickets.filter(t => t.status === "Aberto").length
     const emAndamento = tickets.filter(t => t.status === "Em andamento").length
     const fechados = tickets.filter(t => t.status === " Fechado").length
+=======
+        fetch("http://localhost:3001/tickets", {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => res.json())
+        .then((dados) => () => {
+            if (Array.isArray(dados)) {
+                setTickets(dados);
+            }
+    });
+    }, []);
+
+   const abertos = tickets.filter(t => t.status === "Aberto").length
+   const emAndamento = tickets.filter(t => t.status === "Em andamento").length
+   const fechados = tickets.filter(t => t.status === "Fechado").length
+>>>>>>> c8a3bb376b5c0a3e2e834a2a6ffecf51fc0e0e24
 
     return (
         <div className="p-8 bg-slate-950 min-h-screen text-white">

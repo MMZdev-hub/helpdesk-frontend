@@ -18,7 +18,11 @@ export default function Tickets() {
             headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => res.json())
-        .then((dados) => setTickets(dados));
+        .then((dados) => {
+            if (Array.isArray(dados)) {
+                setTickets(dados);
+            }
+        });
     }, []);
 
     async function handleCriarTicket() {
